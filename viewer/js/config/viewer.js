@@ -194,7 +194,7 @@ define([
             }
         }, {
             type: 'dynamic',
-            url: 'https://sampleserver1.arcgisonline.com/ArcGIS/rest/services/PublicSafety/PublicSafetyOperationalLayers/MapServer',
+            url: 'https://gisblue.mdc.mo.gov/arcgis/rest/services/Boundaries/MDC_Administrative_Boundaries/MapServer',
             title: i18n.viewer.operationalLayers.louisvillePubSafety,
             options: {
                 id: 'louisvillePubSafety',
