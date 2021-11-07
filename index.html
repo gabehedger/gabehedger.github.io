@@ -8,13 +8,13 @@
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
   <link rel="stylesheet" href="./leaflet.css" />
-  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+  <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <!--this is new-->
 
-  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script src="https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
@@ -75,12 +75,12 @@ button {
 
 
       //FETCH THE GEOJSON IN THE FILE
-        var promise = $.getJSON("./workplaces.json");
+        var promise = $.getJSON("https://gabehedger.github.io/workplaces.json");
         //BEGIN A PROMISE FUNCTION WHICH WILL INCLUDE ADDING DATA TO THE MAP
     promise.then(function(data) {
 
       var ATM = L.icon({
-        iconUrl: './images/marker-icon-2x.png'  
+        iconUrl: 'https://gabehedger.github.io/images/marker-icon-2x.png'  
 ,
         //iconSize: [24, 24], // size of the icon
         //popupAnchor: [0,0]
