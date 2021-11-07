@@ -29,6 +29,9 @@ html, body, #map {
     height: 100%;
     width: 100%;
 }
+button {
+        width: 100px;
+    }
   </style> 
   
 <style> 
@@ -49,6 +52,12 @@ html, body, #map {
 </head>
 
 <body>
+
+  <div class="btn-group">
+    <button type="button" id="allbus" class="btn btn-success">All</button>
+    <button type="button" id="others" class="btn btn-primary">Others</button>
+    <button type="button" id="cafes" class="btn btn-danger">Cafes</button>
+</div>
   <div id="map"  ></div>
   <script type="text/javascript">
     var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -66,36 +75,52 @@ html, body, #map {
 
 
       //FETCH THE GEOJSON IN THE FILE
-        var promise = $.getJSON("businesses.json");
+        var promise = $.getJSON("workplaces.json");
         //BEGIN A PROMISE FUNCTION WHICH WILL INCLUDE ADDING DATA TO THE MAP
     promise.then(function(data) {
 
       var ATM = L.icon({
-        iconUrl: 'marker-icon.png'  
+        iconUrl: './images/marker-icon-2x.png'  
 ,
-        iconSize: [24, 24], // size of the icon
-        popupAnchor: [0,0]
+        //iconSize: [24, 24], // size of the icon
+        //popupAnchor: [0,0]
         });
 
       
       var allbusinesses = L.geoJson(data,{
-        pointToLayer: function(feature, latlng) {return L.marker(latlng, {icon: ATM}).on('mouseover', 
-                function() { this.bindPopup('<h1>'+feature.properties.Name+'</h1><p>Business: '
-      +feature.properties.BusType+'</p>').openPopup();
-                });
-      }
-    });
-    // layer.bindPopup('<h1>'+feature.properties.name+'</h1><p>Language: '
-    //  +feature.properties.language+'</p>');
+        pointToLayer: function(feature, latlng) {return L.marker(latlng, {icon:ATM}).on('click', 
+        function() { this.bindPopup('<h1>'+feature.properties.Name+'</h1><p>Business: '+feature.properties.BusType+'</p>').openPopup();
+                })
+        }});
 
-        allbusinesses.addTo(map);
+      // layer.bindPopup('<h1>'+feature.properties.name+'</h1><p>Language: '
+      //  +feature.properties.language+'</p>');
+
+      allbusinesses.addTo(map);
 
         // ADD HOVER EVENT
 
         // LOAD EXTENT TO FIT ALL POINTS
-        map.fitBounds(allbusinesses.getBounds(), {
-            padding: [50, 50]
+      map.fitBounds(allbusinesses.getBounds(), {
+          padding: [50, 50]
         });
+
+      cafes.addTo(map)
+      others.addTo(map)
+        // The JavaScript below is new
+      $("#others").click(function() {
+            map.addLayer(others)
+            map.removeLayer(cafes)
+        });
+      $("#cafes").click(function() {
+            map.addLayer(cafes)
+            map.removeLayer(others)
+        });
+      $("#allbus").click(function() {
+            map.addLayer(cafes)
+            map.addLayer(others)
+        });
+
     }
     );
 

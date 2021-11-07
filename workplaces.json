@@ -1,0 +1,33 @@
+{
+"type": "FeatureCollection",
+    "features": [
+{ "type": "Feature", 
+  "properties": { 
+    "id": 1, 
+    "workname": "Metro Communications", 
+    "worklocation": "Sullivan, IL", 
+    "jobtitle": "GIS Coordinator", 
+    "startdate": "2012-07-03", 
+    "enddate": "2020-10-03", 
+    "jobdescription": "Build and maintain fiber data using ArcFM Fiber Manager and ArcMap. Create maps for proposed construction.  Coordinate with state and local government for design changes.  Ensure geometric network and data integrity. GPS fiber slack loops and manholes and post-process data. " }, "geometry": { "type": "Point", "coordinates": [ -88.6062506, 39.5991047 ] } },
+{ "type": "Feature", 
+  "properties": { 
+    "id": 2, "workname": "Ameren", 
+    "worklocation": "Decatur, IL", 
+    "jobtitle": "Integrity Management Associate", 
+    "startdate": "2017-01-15", 
+    "enddate": "2018-03-15", 
+    "jobdescription": "Create and maintain custom web maps and applications. Automate quality control methods using Python. Monitor data input and provide reports. Train field crews on " }, "geometry": { "type": "Point", "coordinates": [ -88.954449, 39.8379257 ] } },
+{ "type": "Feature", 
+  "properties": { 
+      "id": 3, 
+      "workname": "Alliance Water Resources", 
+      "worklocation": "Cape Girardeau, MO", 
+      "jobtitle": "GIS Specialist ", 
+      "startdate": "2018-07-01", 
+      "enddate": "2019-11-25", 
+      "jobdescription": "Data input and maintenance of the city's water infrastructure. Create, update and maintain ArcGIS Online content.  Manage user access and security. Design, build, and integrate GIS systems for other Alliance locations in the U.S.    " }, "geometry": { "type": "Point", "coordinates": [ -89.5489149, 37.2808884 ] } },
+{ "type": "Feature", "properties": { "id": 4, "workname": "City of Columbia, Missouri ", "worklocation": "Columbia, Missouri", "jobtitle": "GIS Analyst", "startdate": "2019-12-02", "enddate": "2020-04-06", "jobdescription": "Manage, patch, and update ArcGIS Enterprise components.  Create development environments for testing. Manage city employee and contractors access and security. Database administration, ETL, and automation. Integrate third party software with GIS systems. Develop custom web applications.  " }, 
+"geometry": { "type": "Point", "coordinates": [ -92.3289793, 38.9518612 ] } },
+{ "type": "Feature", "properties": { "id": 5, "workname": "City of Columbia, MO", "worklocation": "Columbia, MO", "jobtitle": "GIS Supervisor", "startdate": "2020-04-07", "enddate": null, "jobdescription": "Supervise analyst, specialst, and technicians.  AGILE project managment. " }, "geometry": { "type": "Point", "coordinates": [ -92.3287626, 38.9518817 ] } }
+    ]}
