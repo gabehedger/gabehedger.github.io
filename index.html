@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>The HTML5 Herald</title>
-  <meta name="description" content="The HTML5 Herald">
-  <meta name="author" content="SitePoint">
+  <meta name="description" content="Gabriel Hedger - Resume">
+  <meta name="author" content="GDH">
   <link rel="stylesheet" href="./leaflet.css" />
   <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
@@ -30,7 +30,7 @@ html, body, #map {
     width: 100%;
 }
 button {
-        width: 100px;
+        width: 200px;
     }
   </style> 
   
@@ -54,9 +54,9 @@ button {
 <body>
 
   <div class="btn-group">
-    <button type="button" id="allbus" class="btn btn-success">All</button>
-    <button type="button" id="others" class="btn btn-primary">Others</button>
-    <button type="button" id="cafes" class="btn btn-danger">Cafes</button>
+    <button type="button" id="all" class="btn btn-success btn-lg">All Locations</button>
+    <button type="button" id="school" class="btn btn-primary btn-lg">Education</button>
+    <button type="button" id="work" class="btn btn-danger btn-lg">Experience</button>
 </div>
   <div id="map"  ></div>
   <script type="text/javascript">
@@ -75,7 +75,7 @@ button {
 
 
       //FETCH THE GEOJSON IN THE FILE
-        var promise = $.getJSON("https://gabehedger.github.io/workplaces.json");
+    var promise = $.getJSON("https://gabehedger.github.io/workplaces.json");
         //BEGIN A PROMISE FUNCTION WHICH WILL INCLUDE ADDING DATA TO THE MAP
     promise.then(function(data) {
 
@@ -87,38 +87,40 @@ button {
         });
 
       
-      var allbusinesses = L.geoJson(data,{
+      var allplaces = L.geoJson(data,{
         pointToLayer: function(feature, latlng) {return L.marker(latlng, {icon:ATM}).on('click', 
-        function() { this.bindPopup('<h1>'+feature.properties.workname+'</h1><p>Title: '+feature.properties.jobtitle+'</p><p>Location: '+feature.properties.worklocation+'</p2>').openPopup();
+        function() { this.bindPopup
+          ('<h1>'+feature.properties.workname+'</h1><p>Title: '+
+            feature.properties.jobtitle+'</p><p>Location: '+feature.properties.worklocation+'</p2>').openPopup().unbindPopup();
                 })
         }});
 
       // layer.bindPopup('<h1>'+feature.properties.name+'</h1><p>Language: '
       //  +feature.properties.language+'</p>');
 
-      allbusinesses.addTo(map);
+      allplaces.addTo(map);
 
         // ADD HOVER EVENT
 
         // LOAD EXTENT TO FIT ALL POINTS
-      map.fitBounds(allbusinesses.getBounds(), {
+      map.fitBounds(allplaces.getBounds(), {
           padding: [50, 50]
         });
 
-      cafes.addTo(map)
-      others.addTo(map)
+      work.addTo(map)
+      school.addTo(map)
         // The JavaScript below is new
-      $("#others").click(function() {
-            map.addLayer(others)
-            map.removeLayer(cafes)
+      $("#school").click(function() {
+            map.addLayer(school)
+            map.removeLayer(work)
         });
-      $("#cafes").click(function() {
-            map.addLayer(cafes)
-            map.removeLayer(others)
+      $("#work").click(function() {
+            map.addLayer(work)
+            map.removeLayer(school)
         });
-      $("#allbus").click(function() {
-            map.addLayer(cafes)
-            map.addLayer(others)
+      $("#all").click(function() {
+            map.addLayer(work)
+            map.addLayer(school)
         });
 
     }
