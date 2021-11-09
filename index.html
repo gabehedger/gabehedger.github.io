@@ -69,6 +69,22 @@ button {
     accessToken: 'pk.eyJ1IjoiZ2RoZWRnZXIiLCJhIjoiY2ttd29qNHF1MDJ3NzJ3a291bjJvbmQ1NCJ9.OFv9JezOQZcODfptZLC5UQ'
     });
 
+    var workerpng = L.icon({
+        iconUrl: 'https://gabehedger.github.io/images/smallworker.png'  
+,
+        //iconSize: [68, 49], // size of the icon
+        //popupAnchor: [0,0]
+        });
+
+    var schoolpng = L.icon({
+        iconUrl: 'https://gabehedger.github.io/images/smallgradcap.png'  
+,
+        //iconSize: [68, 49], // size of the icon
+        //popupAnchor: [0,0]
+        });
+
+    
+
     var map = L.map('map')
         .addLayer(mapboxTiles)
         .setView([40.829320, -73.9422376], 20); 
@@ -79,26 +95,30 @@ button {
         //BEGIN A PROMISE FUNCTION WHICH WILL INCLUDE ADDING DATA TO THE MAP
     promise.then(function(data) {
 
-      var ATM = L.icon({
-        iconUrl: 'https://gabehedger.github.io/images/smallgradcap.png'  
-,
-        //iconSize: [68, 49], // size of the icon
-        //popupAnchor: [0,0]
-        });
-
       
-      var allplaces = L.geoJson(data,{
-        pointToLayer: function(feature, latlng) {return L.marker(latlng, {icon:ATM}).on('click', 
+      var allplaces = L.geoJson(data);
+      
+      var work = L.geoJson(data,{
+        filter: function(feature, layer){
+          return feature.properties.worklocation = "Columbia, MO";},
+        pointToLayer: function(feature, latlng) {return L.marker(latlng, {icon:workerpng}).on('click', 
         function() { this.bindPopup
           ('<h1>'+feature.properties.workname+'</h1><p>Title: '+
-            feature.properties.jobtitle+'</p><p>Location: '+feature.properties.worklocation+'</p2>').openPopup().unbindPopup();
+          feature.properties.jobtitle+'</p><p>Location: '+feature.properties.worklocation+'</p2>').openPopup().unbindPopup();
                 })
         }});
-
+        var school = L.geoJson(data, {
+            filter: function(feature, layer) {
+                return feature.properties.worklocation != "Columbia, MO";
+            },
+            pointToLayer: function(feature, latlng) {
+                return L.marker(latlng, {icon:schoolpng}).on('click', function() {
+                    this.bindPopup(feature.properties.jobtitle).openPopup().unbindPopup()})
+        }});
       // layer.bindPopup('<h1>'+feature.properties.name+'</h1><p>Language: '
       //  +feature.properties.language+'</p>');
 
-      allplaces.addTo(map);
+      // allplaces.addTo(map);
 
         // ADD HOVER EVENT
 
