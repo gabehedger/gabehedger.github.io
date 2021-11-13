@@ -113,7 +113,8 @@ button {
             },
             pointToLayer: function(feature, latlng) {
                 return L.marker(latlng, {icon:schoolpng}).on('click', function() {
-                    this.bindPopup(feature.properties.jobtitle).openPopup().unbindPopup()})
+                    this.bindPopup ('<h1>'+feature.properties.workname+'</h1><p>Title: '+
+          feature.properties.jobtitle+'</p><p>Location: '+feature.properties.worklocation+'</p2>').openPopup().unbindPopup()})
         }});
       // layer.bindPopup('<h1>'+feature.properties.name+'</h1><p>Language: '
       //  +feature.properties.language+'</p>');
